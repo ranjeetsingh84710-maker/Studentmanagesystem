@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marks & Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        h2 {
+            color: #123B6D;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #123B6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📚 Marks & Results</h2>
+
+        {% if records %}
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Total Marks</th>
+                <th>Obtained Marks</th>
+                <th>Percentage</th>
+            </tr>
+
+            {% for record in records %}
+            <tr>
+                <td>{{ record['subject'] }}</td>
+                <td>{{ record['total_marks'] }}</td>
+                <td>{{ record['obtained_marks'] }}</td>
+                <td>
+                    {{ "%.2f"|format(record['obtained_marks'] / record['total_marks'] * 100) }}%
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% else %}
+        <p>No examination results available yet.</p>
+        {% endif %}
+
+        <p><a href="{{ url_for('dashboard') }}">← Back to Dashboard</a></p>
+    </div>
+</body>
+</html>

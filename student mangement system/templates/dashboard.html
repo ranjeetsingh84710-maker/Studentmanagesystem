@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduManage</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            color: #183153;
+        }
+        header {
+            background: #123b6d;
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container { padding: 30px 5%; }
+        .welcome {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #00000010;
+        }
+        .card h3 { color: #56718f; }
+        .card p { font-size: 22px; font-weight: bold; }
+        a { color: white; text-decoration: none; }
+        @media(max-width: 600px) {
+            header { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>🎓 EduManage</h2>
+    <a href="/">Home</a>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h1>Welcome, {{ student['name'] }}! 👋</h1>
+        <p>Welcome to your Student Dashboard.</p>
+        <p><b>Roll Number:</b> {{ student['roll_number'] }}</p>
+        <p><b>Email:</b> {{ student['email'] }}</p>
+    </div>
+
+    <div class="cards">
+        <a href="{{ url_for('attendance') }}"
+           style="text-decoration:none; color:inherit;">
+
+           <div class="card">
+                <h3>📅 Attendance</h3>
+                <p>View Attendance →</p>
+           </div>
+
+        </a>
+        <a href="{{ url_for('profile') }}"
+           style="text-decoration:none; color:inherit;">
+            <div class="card">
+                <h3>👤 Student Profile</h3>
+                <p>View Profile →</p>
+            </div>
+        </a>
+        
+
+        
+<a href="{{ url_for('marks') }}"
+   style="text-decoration:none; color:inherit;">
+    <div class="card">
+        <h3>📚 Marks & Results</h3>
+        <p>View Results →</p>
+    </div>
+</a>
+<a href="{{ url_for('add_marks') }}"
+   style="text-decoration:none; color:inherit;">
+    <div class="card">
+        <h3>📝 Add Marks</h3>
+        <p>Add Student Marks →</p>
+    </div>
+</a>
+<a href="{{ url_for('admin') }}"
+   style="text-decoration:none; color:inherit;">
+    <div class="card">
+        <h3>🛡️ Admin Panel</h3>
+        <p>Manage Students →</p>
+    </div>
+</a>
+<a href="{{ url_for('faculty') }}"
+   style="text-decoration:none; color:inherit;">
+    <div class="card">
+        <h3>👨‍🏫 Faculty Panel</h3>
+        <p>Faculty Dashboard →</p>
+    </div>
+</a>
+<a href="{{ url_for('fees') }}" style="text-decoration:none; color:inherit;">
+    <div class="card">
+        <h3>💰 Fees Management</h3>
+        <p>View & Manage Student Fees →</p>
+    </div>
+</a>
+
+</div>
+</body>
+</html>

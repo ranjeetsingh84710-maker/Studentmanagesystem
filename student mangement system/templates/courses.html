@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Courses Management</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f4f8;
+            padding: 25px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        h2 { color: #123B6D; }
+        input, button {
+            padding: 12px;
+            margin: 7px 0;
+            box-sizing: border-box;
+        }
+        input { width: 100%; }
+        button {
+            background: #123B6D;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #123B6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>📚 Courses Management</h2>
+
+    <h3>Add New Course</h3>
+    <form method="POST">
+        <input type="text" name="course_name"
+               placeholder="Course Name" required>
+
+        <input type="text" name="course_code"
+               placeholder="Course Code" required>
+
+        <input type="text" name="department"
+               placeholder="Department" required>
+
+        <input type="text" name="duration"
+               placeholder="Duration (e.g. 4 Years)" required>
+
+        <button type="submit">Add Course</button>
+    </form>
+
+    <h3>Available Courses</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Course</th>
+            <th>Code</th>
+            <th>Department</th>
+            <th>Duration</th>
+            <th>Action</th>
+
+        </tr>
+
+        {% for course in records %}
+        <tr>
+            <td>{{ course['id'] }}</td>
+            <td>{{ course['course_name'] }}</td>
+            <td>{{ course['course_code'] }}</td>
+            <td>{{ course['department'] }}</td>
+            <td>{{ course['duration'] }}</td>
+        <td>
+    <a href="{{ url_for('edit_course', course_id=course['id']) }}">
+        <button type="button">Edit</button>
+    </a>
+
+    <form method="POST"
+          action="{{ url_for('delete_course', course_id=course['id']) }}"
+          onsubmit="return confirm('Delete this course?');">
+        <button type="submit">Delete</button>
+    </form>
+</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6">No courses added yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</div>
+</body>
+</html>

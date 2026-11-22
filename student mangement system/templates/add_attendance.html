@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Attendance</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f6fc;
+            padding: 30px;
+        }
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background: #123b6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>📅 Add Attendance</h2>
+
+    <form method="POST" action="{{ url_for('add_attendance') }}">
+        <label>Subject Name</label>
+        <input type="text" name="subject"
+               placeholder="Enter subject name" required>
+
+        <label>Date</label>
+        <input type="date" name="attendance_date" required>
+
+        <label>Attendance Status</label>
+        <select name="status" required>
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+
+        <button type="submit">Save Attendance</button>
+    </form>
+
+    <a href="{{ url_for('attendance') }}">← Back to Attendance</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - EduManage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            padding: 30px;
+            color: #183153;
+        }
+        .profile-card {
+            max-width: 550px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px #00000012;
+        }
+        .avatar {
+            font-size: 65px;
+            text-align: center;
+        }
+        h1, .subtitle { text-align: center; }
+        .detail {
+            padding: 13px;
+            margin: 10px 0;
+            background: #f2f6fc;
+            border-radius: 8px;
+        }
+        a { color: #123b6d; }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="avatar">👨‍🎓</div>
+        <h1>{{ student['name'] }}</h1>
+        <p class="subtitle">Student Profile</p>
+
+        <div class="detail">
+            <b>Student ID:</b> {{ student['id'] }}
+        </div>
+        <div class="detail">
+            <b>Roll Number:</b> {{ student['roll_number'] }}
+        </div>
+        <div class="detail">
+            <b>Full Name:</b> {{ student['name'] }}
+        </div>
+        <div class="detail">
+            <b>Email:</b> {{ student['email'] }}
+        </div>
+
+        <p><a href="{{ url_for('dashboard') }}">← Back to Dashboard</a></p>
+    </div>
+</body>
+</html>

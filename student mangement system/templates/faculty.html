@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Panel</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f4f8;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        h2 { color: #123B6D; }
+        .card {
+            background: #eaf3ff;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>👨‍🏫 Faculty Panel</h2>
+
+        <div class="card">
+            <h3>Student Attendance</h3>
+            <p>Manage student attendance.</p>
+        </div>
+
+        <div class="card">
+            <h3>Student Marks</h3>
+            <p>Manage student examination results.</p>
+        </div>
+
+        <div class="card">
+            <h3>Student Records</h3>
+            <p>View student information.</p>
+        </div>
+
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

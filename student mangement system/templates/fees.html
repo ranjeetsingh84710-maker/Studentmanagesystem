@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fees Management</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f4f8;
+            padding: 25px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        h2 { color: #123B6D; }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background: #123B6D;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #123B6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>💰 Fees Management</h2>
+
+    <h3>Add Student Fees</h3>
+
+    <form method="POST">
+        <select name="student_id" required>
+            <option value="">Select Student</option>
+            {% for student in students %}
+            <option value="{{ student['id'] }}">
+                {{ student['name'] }} - {{ student['roll_number'] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <input type="number" name="total_fee"
+               placeholder="Total Fees" min="1" step="0.01" required>
+
+        <input type="number" name="paid_amount"
+               placeholder="Paid Amount" min="0" step="0.01"
+               value="0" required>
+
+        <label>Due Date</label>
+        <input type="date" name="due_date">
+
+        <button type="submit">Save Fees Record</button>
+    </form>
+
+    <h3>Student Fee Records</h3>
+
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Roll Number</th>
+            <th>Total Fee</th>
+            <th>Paid</th>
+            <th>Pending</th>
+            <th>Due Date</th>
+        </tr>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record['name'] }}</td>
+            <td>{{ record['roll_number'] }}</td>
+            <td>₹{{ record['total_fee'] }}</td>
+            <td>₹{{ record['paid_amount'] }}</td>
+            <td>₹{{ record['total_fee'] - record['paid_amount'] }}</td>
+            <td>{{ record['due_date'] or '-' }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6">No fee records available.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Attendance - EduManage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body { font-family: Arial; background: #f2f6fc; padding: 25px; color: #183153; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 25px; border-radius: 12px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 14px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background: #123b6d; color: white; }
+        a { color: #123b6d; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📅 My Attendance</h1>
+    <p>Subject-wise attendance records</p>
+    <h2>Mark Your Attendance</h2>
+
+<form action="{{ url_for('mark_attendance') }}" method="POST">
+    <label>Subject Name:</label>
+
+<input type="text"
+       name="subject"
+       placeholder="Enter Subject Name"
+       required>
+
+<br><br>
+
+    <label>Attendance Date:</label>
+    <input type="date" name="attendance_date" required>
+
+    <br><br>
+
+    <label>Attendance Status:</label>
+    <select name="status" required>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Save Attendance</button>
+
+</form>
+
+    {% if records %}
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        {% for record in records %}
+        <tr>
+            <td>{{ record['subject'] }}</td>
+            <td>{{ record['attendance_date'] }}</td>
+            <td>{{ record['status'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No attendance records available yet.</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('dashboard') }}">← Back to Dashboard</a></p>
+</div>
+</body>
+</html>
